@@ -28,7 +28,7 @@ Route::post('/', 'Auth\LoginController@login')->name('login');
 // // Route::group(['middleware'=> 'CekLoginMiddleware'], function(){
 Route::group(['middleware'=> 'auth'], function(){
     Route::get('/dashboard', function () {
-        return view('index');
+        return view('index',['isipesan'=>"Selamat, Data berhasil disimpan"]);
     })->name('dashboard');
     
     Route::get('crud', 'CrudController@index')->name('crud');
@@ -39,6 +39,9 @@ Route::group(['middleware'=> 'auth'], function(){
     Route::patch('crud/{id}', 'CrudController@update')->name('crud.update');
 
     Route::resource('konfigurasi/setup','Konfigurasi\SetupController');
+
+    Route::resource('master-data/divisi','MasterData\DivisiController');
+
 
     Route::get('logout', 'otentikasi\OtentikasiController@logout')->name('logout');
 });
